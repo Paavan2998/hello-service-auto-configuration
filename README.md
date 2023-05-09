@@ -1,0 +1,1 @@
+# hello-service-auto-configuration
