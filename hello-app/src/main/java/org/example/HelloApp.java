@@ -2,6 +2,7 @@ package org.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * @SpringBootApplication is meta annotated with three different annotations: @SpringBootConfiguration, @ComponentScan, @EnableAutoConfiguration
@@ -10,6 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class HelloApp {
     public static void main(String[] args) {
-        SpringApplication.run(HelloApp.class, args);
+        new SpringApplicationBuilder(HelloApp.class)
+                .listeners(new HelloApplicationListener())
+                .run(args);
     }
 }
