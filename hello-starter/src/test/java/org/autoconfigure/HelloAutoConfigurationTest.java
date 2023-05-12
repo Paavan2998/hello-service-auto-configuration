@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class HelloAutoConfigurationTest {
     @Rule
@@ -30,7 +30,7 @@ public class HelloAutoConfigurationTest {
 
     @Test
     public void defaultServiceAutoConfigured(){
-        load(EmptyConfiguration.class,"Hello.prefix=Howdy");
+        load(EmptyConfiguration.class,"Hello.prefix=Howdy", "hello.displayGreeting=true");
         HelloService service = this.context.getBean(HelloService.class);
         String msg = service.sayHello("World");
         assertEquals("Howdy World!", msg);
@@ -42,6 +42,16 @@ public class HelloAutoConfigurationTest {
         HelloService service = this.context.getBean(HelloService.class);
         String msg = service.sayHello("Works");
         assertEquals("Mine Works**", msg);
+    }
+    @Test
+    public void defaultServiceIsNotAutoConfiguredIfPrefixIsMissing(){
+        load(EmptyConfiguration.class);
+        assertTrue(this.context.getBeansOfType(HelloService.class).isEmpty());
+    }
+    @Test
+    public void defaultServiceIsNotAutoConfiguredWithWrongPrefix(){
+        load(EmptyConfiguration.class, "hello.prefix=invalid", "hello.displayGreeting=true");
+        assertTrue(this.context.getBeansOfType(HelloService.class).isEmpty());
     }
     private void load(Class<?> config, String... environment){
         AnnotationConfigApplicationContext ctx =

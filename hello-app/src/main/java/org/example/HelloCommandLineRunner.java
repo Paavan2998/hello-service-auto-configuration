@@ -1,6 +1,5 @@
 package org.example;
 
-import hello.HelloService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
