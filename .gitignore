@@ -1,0 +1,4 @@
+/hello-app/target/**
+/hello-starter/target/**
+/hello-service/target/**
+/.idea/**

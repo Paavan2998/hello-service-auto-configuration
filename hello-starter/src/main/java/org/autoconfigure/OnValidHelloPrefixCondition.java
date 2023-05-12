@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.condition.SpringBootCondition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
-public class OnValidHelloPrefixCondition extends SpringBootCondition {
+class OnValidHelloPrefixCondition extends SpringBootCondition {
     @Override
     public ConditionOutcome getMatchOutcome(ConditionContext context, AnnotatedTypeMetadata metadata) {
-        ConditionMessage.Builder condition = ConditionMessage.forCondition("ValidHelloPrefix");
+        ConditionMessage.Builder condition = ConditionMessage.forCondition(ConditionalOnValidHelloPrefix.class);
         if(context.getEnvironment().containsProperty("hello.prefix")){
             String value = context.getEnvironment().getProperty("hello.prefix");
             if(Character.isUpperCase(value.charAt(0))){
