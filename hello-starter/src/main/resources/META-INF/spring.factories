@@ -1,1 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=org.autoconfigure.HelloAutoConfiguration
+org.springframework.boot.diagnostics.FailureAnalyzer=org.autoconfigure.InvalidHelloPrefixFailureAnalyzer
